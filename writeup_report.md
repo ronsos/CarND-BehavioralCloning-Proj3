@@ -10,13 +10,11 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./examples/center.jpg "Center Camera"
+[image2]: ./examples/right.jpg "Right Camera"
+[image3]: ./examples/left.jpg "Left Camera"
+[image4]: ./examples/flipped.jpg "Flipped Image"
+
 
 ** Rubric Points 
 Each of the points in the project [rubric](https://review.udacity.com/#!/rubrics/432/view) are addressed below.
@@ -89,25 +87,53 @@ From this initial baseline, new ideas were added one by one and tested to see if
 
 ** 2. Final Model Architecture
 
-The final model architecture consisted of a convolutional neural network and is depicted above.
+The final model architecture consisted of a convolutional neural network and is depicted below:
+
+____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+lambda_1 (Lambda)                (None, 160, 320, 3)   0           lambda_input_1[0][0]             
+____________________________________________________________________________________________________
+cropping2d_1 (Cropping2D)        (None, 65, 320, 3)    0           lambda_1[0][0]                   
+____________________________________________________________________________________________________
+convolution2d_1 (Convolution2D)  (None, 31, 158, 24)   1824        cropping2d_1[0][0]               
+____________________________________________________________________________________________________
+convolution2d_2 (Convolution2D)  (None, 14, 77, 36)    21636       convolution2d_1[0][0]            
+____________________________________________________________________________________________________
+convolution2d_3 (Convolution2D)  (None, 5, 37, 48)     43248       convolution2d_2[0][0]            
+____________________________________________________________________________________________________
+convolution2d_4 (Convolution2D)  (None, 3, 35, 64)     27712       convolution2d_3[0][0]            
+____________________________________________________________________________________________________
+convolution2d_5 (Convolution2D)  (None, 1, 33, 64)     36928       convolution2d_4[0][0]            
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 2112)          0           convolution2d_5[0][0]            
+____________________________________________________________________________________________________
+dense_1 (Dense)                  (None, 100)           211300      flatten_1[0][0]                  
+____________________________________________________________________________________________________
+dense_2 (Dense)                  (None, 50)            5050        dense_1[0][0]                    
+____________________________________________________________________________________________________
+dense_3 (Dense)                  (None, 10)            510         dense_2[0][0]                    
+____________________________________________________________________________________________________
+dense_4 (Dense)                  (None, 1)             11          dense_3[0][0]                    
+====================================================================================================
+Total params: 348,219
+Trainable params: 348,219
+Non-trainable params: 0
 
 ** 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+Here is an example image of center lane driving from the center camera:
 
 ![alt text][image1]
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+The left and right camera frames were also added to the data set. Here are examples of the left and right camera images from the same time as the center image:
 
 ![alt text][image2]
 ![alt text][image3]
+
+To augment the data set, I flipped all of the images and changed the sign on the associated steering angles. The rationale was to add more right turn data to help offset all the left turns on the track. Here is the flipped version of center image at the same time stamp:
+
 ![alt text][image4]
-
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image5]
-![alt text][image6]
 
 After the collection process, I had X number of data points. I then preprocessed this data by ...
 

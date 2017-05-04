@@ -48,7 +48,7 @@ The model.py file contains the code for training and saving the convolution neur
 
 The model consists of a convolutional neural network based on the NVIDIA architecture (model.py lines 57-70). 
 
-The data is normalized in the model using a lambda layer. Cropping is using to crop the top 70 pixels and the bottom 20 pixels from the frame, since these are very similar from image to image and have little bearing on effective training of the network. A series of convolution filters is applied, with varying filter size from 24 to 64. A series of flattening and densifcation layers were used to reduce to a single output (steering angle). 
+The data is normalized in the model using a lambda layer. Cropping is using to crop the top 70 pixels and the bottom 20 pixels from the frame, since these are very similar from image to image and have little bearing on effective training of the network. A series of convolution filters is applied, with varying filter size from 24 to 64. A series of flattening and densification layers were used to reduce to a single output (steering angle). 
 
 ### 2. Attempts to reduce overfitting in the model
 
@@ -120,5 +120,5 @@ The validation set helped determine if the model was over or under fitting. The 
 | 4 |  0.0197 | 0.0323 |
 
 ## Future Work
-It may be possible to further improve the performance of the network with some additional changes. Adding a dropout or max pool layer to the network may help reduce the loss. Adding some randomness to the data set, by only flipping a subset of images would likely lead to similar performance with less training time. Use of manual training data should be investigate (as opposed to the provided data set). Additional pre-processing steps, such as shading or random brightness adjustments may help performance and also improve Track 2 performance. Finally, Track 2 should be investigated further. 
+It may be possible to further improve the performance of the network with some additional changes. Adding a dropout or max pool layer to the network may help reduce the loss. Adding some randomness to the data set, by only flipping a subset of images would likely lead to similar performance with less training time. Use of manual training data should be investigated (as opposed to the provided data set). Additional pre-processing steps, such as shading or random brightness adjustments may help performance and also improve Track 2 performance. Finally, Track 2 should be investigated further. 
 

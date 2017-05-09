@@ -112,7 +112,7 @@ The total training data set size was 26164 samples. The data was normalized in t
 
 The validation set helped determine if the model was over or under fitting. The  number of epochs used was 4. The loss results are shown in the table below. The training loss is monotonically decreasing. Arguably, the training should be stopped after Epoch 2 as the validation loss is minimum after Epoch 2. This is an area of further investigation.  
 
-|Epoch | Traininig Loss | Validation Loss |
+|Epoch | Training Loss | Validation Loss |
 | ---  | -------------- | --------------- | 
 |1 | 0.0328 | 0.0356 |
 | 2 | 0.0255 | 0.0279 |
